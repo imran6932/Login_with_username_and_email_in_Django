@@ -1,9 +1,9 @@
 # Login_with_username_and_email_in_Django
 Login  with both Email and username in Django
 
-#Login with both Username and Email in Django
+## Login with both Username and Email in Django
 
-###  models.py
+###  ***models.py***
 ```python
 from django.db import models
 from django.contrib.auth.models import AbstractUser
@@ -16,7 +16,7 @@ class CustomUser(AbstractUser):
 ```
     
     
-### forms.py
+### ***forms.py***
 ```python
 from .models import CustomUser
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -44,7 +44,7 @@ class LoginForm(AuthenticationForm):
 ```
     
     
-### backends.py     #this should be  application root folder
+### ***backends.py***     ***#this should be  application root folder***
 ```python
 from django.contrib.auth.backends import ModelBackend
 from django.contrib.auth import get_user_model
@@ -68,7 +68,7 @@ class EmailBackend(ModelBackend):
             return user
 ```
             
-### admin.py
+### ***admin.py***
 ```python
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
@@ -77,13 +77,13 @@ from .models import CustomUser
 admin.site.register(CustomUser, UserAdmin)
 ```
 
-### settings.py
+### ***settings.py***
 ```python
 AUTH_USER_MODEL = 'account.CustomUser'   # here 'account' is your app name and 'CustomUser' is model name
 AUTHENTICATION_BACKENDS = ['account.backends.EmailBackend']
 ```
 
-### urls.py
+### ***urls.py***
 ```python
 from django.contrib import admin
 from django.urls import path
@@ -97,7 +97,7 @@ urlpatterns = [
     ]
 ```  
     
-### views.py
+### ***views.py***
 ```python
 from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect, render
